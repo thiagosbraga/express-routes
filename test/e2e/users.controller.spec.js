@@ -7,30 +7,69 @@ var chai = require('chai');
 var expect = chai.expect;
 chai.use(require('chai-things'));
 
-
-
 describe('Users Controller', function(){
 	describe('.list- GET /users', function(){
 		it('Shold return a array json',function(done){
 			request(app)
 				.get('/users')
 				.end(function(err,res){
-					
 					expect(res.statusCode).to.be.equal(200);
 					expect(res.body).to.be.an('array');
-					expect(res.body)
-					.all.have.property('name')
-					.to.be.an('string');
 					done();
 				})
+		})
+	})
 
-		});
+	describe('.create- POST /users:id', function(){
+		it('Shold create a user ',function(done){
+			request(app)
+				.post('/users/1')
+				.end(function(err,res){
+					expect(res.statusCode).to.be.equal(201);
+					
+					done();
+				})
+		})
+	})
 
-		it('teste de comportamento 2',function(){
+	describe('.get- GET /users:id', function(){
+		it('Shold return a user ',function(done){
+			request(app)
+				.post('/users/1')
+				.end(function(err,res){
+					expect(res.statusCode).to.be.equal(201);
+					expect(res.body).to.have.a.property('message')
+					.to.be.a.equal('create');
+					done();
+				})
+		})
+	})
 
-
-		});
-
-	});
+	describe('.update- PUT /users:id', function(){
+		it('Shold update a user ',function(done){
+			request(app)
+				.put('/users/1')
+				.end(function(err,res){
+					expect(res.statusCode).to.be.equal(200);
+					expect(res.body).to.have.a.property('message')
+					.to.be.a.equal('updated');
+					
+					done();
+				})
+		})
+	})
+	describe('.delete- DELETE /users:id', function(){
+		it('Shold delete a user ',function(done){
+			request(app)
+				.delete('/users/1')
+				.end(function(err,res){
+					expect(res.statusCode).to.be.equal(200);
+					expect(res.body).to.have.a.property('message')
+					.to.be.a.equal('deleted');
+					done();
+				})
+		})
+	})
+		
 
 });
