@@ -30,11 +30,11 @@ function create(req,res){
 }
 
 function get(req,res){
-
-	console.log(req.params);
-
 	var user = {nome:'Thiago'};
-	res.json(user);
+	res
+	.status(200)
+	.json(user);
+
 }
 
 function update(req,res){

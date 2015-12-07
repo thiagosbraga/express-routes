@@ -20,10 +20,10 @@ describe('Users Controller', function(){
 		})
 	})
 
-	describe('.create- POST /users:id', function(){
+	describe('.create- POST /users', function(){
 		it('Shold create a user ',function(done){
 			request(app)
-				.post('/users/1')
+				.post('/users')
 				.end(function(err,res){
 					expect(res.statusCode).to.be.equal(201);
 					
@@ -35,11 +35,11 @@ describe('Users Controller', function(){
 	describe('.get- GET /users:id', function(){
 		it('Shold return a user ',function(done){
 			request(app)
-				.post('/users/1')
+				.get('/users/1')
 				.end(function(err,res){
-					expect(res.statusCode).to.be.equal(201);
-					expect(res.body).to.have.a.property('message')
-					.to.be.a.equal('create');
+					expect(res.statusCode).to.be.equal(200);
+					expect(res.body).to.have.a.property('nome')
+					.to.be.a.equal('Thiago');
 					done();
 				})
 		})
@@ -54,7 +54,7 @@ describe('Users Controller', function(){
 					expect(res.body).to.have.a.property('message')
 					.to.be.a.equal('updated');
 					
-					done();
+					done();	
 				})
 		})
 	})
