@@ -53,6 +53,9 @@ function create(req,res){
 }
 
 function get(req,res){
+
+	Users
+	.findOne({_id: ObjectId(req.param.id),active:true});
 	var user = {nome:'Thiago'};
 	res
 	.status(200)
