@@ -11,7 +11,7 @@ describe('Users Controller', function(){
 	describe('.list- GET /users', function(){
 		it('Shold return a array json',function(done){
 			request(app)
-				.get('/users')
+				.get('/api/users')
 				.end(function(err,res){
 					expect(res.statusCode).to.be.equal(200);
 					expect(res.body).to.be.an('array');
@@ -23,7 +23,7 @@ describe('Users Controller', function(){
 	describe('.create- POST /users', function(){
 		it('Shold create a user ',function(done){
 			request(app)
-				.post('/users')
+				.post('/api/users')
 				.end(function(err,res){
 					expect(res.statusCode).to.be.equal(201);
 					
@@ -35,7 +35,7 @@ describe('Users Controller', function(){
 	describe('.get- GET /users:id', function(){
 		it('Shold return a user ',function(done){
 			request(app)
-				.get('/users/1')
+				.get('/api/users/1')
 				.end(function(err,res){
 					expect(res.statusCode).to.be.equal(200);
 					expect(res.body).to.have.a.property('nome')
@@ -48,7 +48,7 @@ describe('Users Controller', function(){
 	describe('.update- PUT /users:id', function(){
 		it('Shold update a user ',function(done){
 			request(app)
-				.put('/users/1')
+				.put('/api/users/1')
 				.end(function(err,res){
 					expect(res.statusCode).to.be.equal(200);
 					expect(res.body).to.have.a.property('message')
@@ -61,7 +61,7 @@ describe('Users Controller', function(){
 	describe('.delete- DELETE /users:id', function(){
 		it('Shold delete a user ',function(done){
 			request(app)
-				.delete('/users/1')
+				.delete('/api/users/1')
 				.end(function(err,res){
 					expect(res.statusCode).to.be.equal(200);
 					expect(res.body).to.have.a.property('message')

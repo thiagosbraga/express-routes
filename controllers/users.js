@@ -1,5 +1,7 @@
 'use strict';
 
+let Users = require('../models').users;
+
 module.exports={
 
 	list: list,
@@ -12,21 +14,42 @@ module.exports={
 
 
 function list(req,res){
+	Users
+	.find({},'-__v')
+	.then(function(users){
+		res.json(users);
 
-	var users = [
-		{nome:'Thiago'},
-		{nome:'Grazi'},
-	];
-	res.json(users);
+	});
+	
+	
 }
 
 function create(req,res){
 
-	res
-	.status(201)
-	.json({
+
+	let success = function(status){
+		console.log(status);
+		res
+		.status(201)
+		.json({
 		message:'create'
-	});
+		});
+
+	};
+
+	let error = function(err){
+		console.log(err);
+		res.status(400)
+		.json({message:'Deu algo errado'});
+
+	};
+
+	let user = new Users(req.body);
+	user
+	.save()
+	.then(success,error);
+	console.log(user);
+
 }
 
 function get(req,res){

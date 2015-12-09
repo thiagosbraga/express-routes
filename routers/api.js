@@ -3,6 +3,13 @@
 let Router = require('express').Router;
 let router = new Router();
 let controllers = require('../controllers');
+let bodyParser = require('body-parser');
+let multer = require('multer')();
+
+//habilita o body parser e passa a recever o body da requisicao
+router.use(bodyParser.urlencoded({extended:false}));
+router.use(bodyParser.json());
+router.use(multer.array());
 
 router
 .route('/users')
